@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorsConfs:
   - {fileID: 11400000, guid: 20f7d447bb433c343852e61790277328, type: 2}
-  - {fileID: 11400000, guid: bf401b5fa8b43064497d8964fac3fa4a, type: 2}
   confsToSerialize:
   - {fileID: 11400000, guid: 20f7d447bb433c343852e61790277328, type: 2}
-  - {fileID: 11400000, guid: bf401b5fa8b43064497d8964fac3fa4a, type: 2}
   configuredGameObject:
   - Player
   configurationsNames:
   - PlayerAct
-  - ExecuteAct

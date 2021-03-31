@@ -10653,16 +10653,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f2047cb01c13f344b689a1d1711d230, type: 2}
   actuatorsConfigurations:
   - {fileID: 11400000, guid: 20f7d447bb433c343852e61790277328, type: 2}
-  - {fileID: 11400000, guid: bf401b5fa8b43064497d8964fac3fa4a, type: 2}
   ASPFilePath: .\Assets\Resources\Player.asp
   ASPFileTemplatePath: .\Assets\Resources\Player_template.asp
   triggerClassPath: .\Assets\Scripts\Trigger.cs
   updateSensorsRepeteadly: 1
-  sensorsUpdateFrequencyMS: 300
+  sensorsUpdateFrequencyMS: 200
   updateSensorsOnTrigger: 0
   updateSensorsOn: 
-  executeReasonerOn: When Sensors are ready
-  applyActuatorsCondition: Always
+  executeReasonerOn: runTheReasoner
+  applyActuatorsCondition: applyActuators
 --- !u!114 &1059394110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10677,10 +10676,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   answerA: 
   answerB: 
-  answerC: 
   execute: 0
   executeCount: 0
-  enableAi: 0
+  enableAi: 1
   inAction: 0
   onPlatform: 0
   lives: 5
@@ -10709,10 +10707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gOConfigurations:
   - {fileID: 11400000, guid: 20f7d447bb433c343852e61790277328, type: 2}
-  - {fileID: 11400000, guid: bf401b5fa8b43064497d8964fac3fa4a, type: 2}
   localNames:
   - PlayerAct
-  - ExecuteAct
   goName: Player
 --- !u!114 &1059394112
 MonoBehaviour:

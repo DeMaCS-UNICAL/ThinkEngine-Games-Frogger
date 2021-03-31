@@ -14,7 +14,7 @@ public class Player : Tile
 {
     public string answerA = "STILL";
     public string answerB = "STILL";
-    public string answerC = "STILL";
+    //public string answerC = "STILL";
 
 
     public bool execute = false;
@@ -54,7 +54,7 @@ public class Player : Tile
     {
         answerA = "STILL";
         answerB = "STILL";
-        answerC = "STILL";
+       // answerC = "STILL";
 
 
         originalPos = transform.position;
@@ -91,7 +91,6 @@ public class Player : Tile
 
         UpdatePosition();
         CheckStates();
-
     }
 
     private void CheckStates()
@@ -319,25 +318,57 @@ public class Player : Tile
             Debug.Log("NOPE");
         }
 
-        if ( _actionDelay == 0 && execute)
+        if ( _actionDelay == 0)
         {
-            if(executeCount==0)
+            if(executeCount==0&&execute)
             {
-                Enum.TryParse(answerA, out Movement move);
+                Debug.Log("Cerco di trasformare " + answerA);
+                parseAiMovement(answerA);
+                answerA = "STILL";
+                Debug.Log("IN  " + move);
                 executeCount++;
             }
-            if ( executeCount == 1 )
+            if ( executeCount == 1&&execute&&move==Movement.IDLE )
             {
-                Enum.TryParse(answerB, out Movement move);
-                executeCount++;
-            }
-            if ( executeCount == 2 )
-            {
-                Enum.TryParse(answerC, out Movement move);
+                Debug.Log("Cerco di trasformare " + answerB);
+                parseAiMovement(answerB);
+                answerB = "STILL";
+                Debug.Log("IN  " + move);
                 execute = false;
             }
+            //if ( executeCount == 2 )
+            //{
+            //    Enum.TryParse(answerC, out Movement move);
+            //    execute = false;
+            //}
 
         }
+    }
+
+    public void parseAiMovement(string s)
+    {
+        switch ( s )
+        { 
+            case "up":
+                move = Movement.UP;
+                break;
+            case "down":
+                move = Movement.DOWN;
+                break;
+            case "left":
+                move = Movement.LEFT;
+                break;
+            case "right":
+                move = Movement.RIGHT;
+                break;
+            case "still":
+                move = Movement.STILL;
+                break;
+        }
+    }
+    public void addcount()
+    {
+        executeCount++;
     }
 
     private void InputHandler()
@@ -388,7 +419,7 @@ public class Player : Tile
             execute = true;
             answerA = X;
             answerB= Y;
-            answerC = Z;
+            //answerC = Z;
         }
    }
 

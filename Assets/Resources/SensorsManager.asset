@@ -23,12 +23,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bf78c2f6409c69f4681bb6e9e8ea47b8, type: 2}
   - {fileID: 11400000, guid: 66d824f848d95b64f940b0728176dfa6, type: 2}
   - {fileID: 11400000, guid: 4ce3244c9e9423f479fb60563498709a, type: 2}
-  - {fileID: 11400000, guid: 09a466fc896609a4e88580bf72ad9714, type: 2}
   - {fileID: 11400000, guid: 8d8e32f37fbaf4d4f84c1914b95a4d4c, type: 2}
   - {fileID: 11400000, guid: 085b47f9750fbfd458827f407faac6b7, type: 2}
   - {fileID: 11400000, guid: 485a4cda8ed5d6146b6f5cc4bf026a2c, type: 2}
   - {fileID: 11400000, guid: 3f2047cb01c13f344b689a1d1711d230, type: 2}
   - {fileID: 11400000, guid: 7318043192aefce4db02e166a88461d2, type: 2}
+  - {fileID: 11400000, guid: 09a466fc896609a4e88580bf72ad9714, type: 2}
   configuredGameObject:
   - TrunkSpawnerLine1
   - TrunkSpawnerLine2
@@ -42,10 +42,10 @@ MonoBehaviour:
   - LineCars3
   - LineCars4
   - LineSuperCar
-  - Player
   - Goal3
   - Goal4
   - Goal5
+  - Player
   configurationsNames:
   - TrunkLine1
   - TrunkLine2
@@ -57,9 +57,9 @@ MonoBehaviour:
   - LineCars3
   - LineCars4
   - LineSuperCar
-  - PlayerSensor
   - Goal2
   - Goal3
   - Goal4
   - Goal5
   - Goal1
+  - PlayerSensor

@@ -20,9 +20,6 @@ MonoBehaviour:
   - Player^answerB
   - Player
   - Player^answerB
-  - Player^answerC
-  - Player
-  - Player^answerC
   propertiesNames: []
   gOType: ToxicFrog (UnityEngine.GameObject)
   configurationName: PlayerAct

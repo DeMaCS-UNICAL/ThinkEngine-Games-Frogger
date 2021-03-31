@@ -12,11 +12,6 @@ moveTo(left).
 moveTo(right).
 moveTo(down).
 
-setOnActuator(playerAct(player(player(answerA(X))))):-Answer(X,_).
-setOnActuator(playerAct(player(player(answerB(X))))):-Answer(_,X).
-
-
-
 %Reorganized Data From Sensors
 trunkRaw(X,Z,Dim):- trunkLine1(trunkSpawnerLine1(trunkSpawner(spawnedComponents(T,trunk(posX(X)))))),trunkLine1(trunkSpawnerLine1(trunkSpawner(spawnedComponents(T,trunk(posZ(Z)))))),trunkLine1(trunkSpawnerLine1(trunkSpawner(spawnedComponents(T,trunk(dim(Dim)))))).
 trunkRaw(X,Z,Dim):- trunkLine1(trunkSpawnerLine2(trunkSpawner(spawnedComponents(T,trunk(posX(X)))))),trunkLine2(trunkSpawnerLine1(trunkSpawner(spawnedComponents(T,trunk(posZ(Z)))))),trunkLine2(trunkSpawnerLine1(trunkSpawner(spawnedComponents(T,trunk(dim(Dim)))))).
@@ -58,7 +53,6 @@ unsafe(T,X,Z):- car(X1,Z,-1),xCoord(X),zCoord(Z),X=X1-2,secondStep(T).
 unsafe(T,X,Z):-not nextSafe(X,Z),xCoord(X),zCoord(Z),Z>6,secondStep(T). %Tutte le tile che non sono tronchi o tartarughe
 
 
-
 %Posizioni sicure perchè erba o tronco, tartaruga, goal
 safe(T,X,Z):- xCoord(X),firstStep(T), Z=0.
 safe(T,X,Z):- xCoord(X),firstStep(T), Z=6.
@@ -97,13 +91,13 @@ nextPlayerPos(T,X1,Z,P,right):-nextPlayerPos(T1,X,Z,P1,M), X1=X+1, M!=left,first
 
 :-Answer(M,_), nextPlayerPos(T,X,Z,P,M),not safe(T,X,Z),firstStep(T),P!=null.
 :-Answer(_,M), nextPlayerPos(T,X,Z,P,M), not safe(T,X,Z),secondStep(T),P==null.
-%:- # count {M,M1: Answer (M,M1)} > 1.
-%:- # count {M,M1: Answer (M,M1)} = 0.
-%:-Answer(M,M1),M==left,M1==still.
-
+:- # count {M,M1: Answer (M,M1)} > 1.
+:- # count {M,M1: Answer (M,M1)} = 0.
 
 
 Answer(Fs,Ss) | NotAnswer(Fs,Ss) :-nextPlayerPos(T,X,Z,Fs,Ss),Fs!=null.
+
+
 
 
 
