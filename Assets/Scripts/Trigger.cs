@@ -7,13 +7,14 @@ using UnityEngine;
 
     public bool runTheReasoner()
     {
-        Debug.Log("In Esecuzione...");
-        if( GameObject.FindObjectOfType<Player>().execute )
+        //Debug.Log("In Esecuzione...");
+        Player player = GameObject.FindObjectOfType<Player>();
+        if ( player.execute || player.inAction )
         {
-            Debug.Log("Non Far partire il Resasoner");
+           // Debug.Log("Non Far partire il Resasoner");
             return false;
         }
-        Debug.Log("Parti pure...");
+        //Debug.Log("Parti pure...");
         return true;
     }
 
@@ -21,15 +22,14 @@ using UnityEngine;
     public bool applyActuators()
     {
         Player player = GameObject.FindObjectOfType<Player>();
-        Debug.Log("checking if apply");
         if (player.dead || player.execute || player.inAction )
         {
-            Debug.Log("returning FALSE for actuators");
+            //Debug.Log("returning FALSE for actuators");
 
             return false;
         }
 
-        Debug.Log("returning true for actuators");
+       // Debug.Log("returning true for actuators");
         return true;
     }
 }
