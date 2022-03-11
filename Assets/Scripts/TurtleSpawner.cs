@@ -60,10 +60,12 @@ public class TurtleSpawner : MonoBehaviour
 
 
         if ( _spawnCounter % subMergeIndex != 0 )
-           _spawn.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            _spawn.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         else
-           _spawn.transform.position = new Vector3(transform.position.x, transform.position.y-.5f, transform.position.z);
+        {
+           // _spawn.transform.position = new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z);
 
+        }
             //switch ( dir )
             //{
             //    case Direction.Left:

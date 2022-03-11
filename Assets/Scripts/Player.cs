@@ -14,7 +14,6 @@ public class Player : Tile
 {
     public string answerA = "STILL";
     public string answerB = "STILL";
-    public string answerC = "STILL";
 
 
     public bool execute = false;
@@ -32,7 +31,6 @@ public class Player : Tile
     public float warningTime = 5;
     public float gameTimer;
     private int goalCount = 0;
-    public bool ready;
     public Vector3 velocity;
 
     public GameObject playerPrefab;
@@ -47,15 +45,12 @@ public class Player : Tile
     private Animator anim;
     internal bool gameOver;
 
-    public float speed = 6.0f;
-
-    // Start is called before the first frame update
     void Start()
     {
         answerA = "STILL";
         answerB = "STILL";
-        answerC = "STILL";
 
+      
 
         originalPos = transform.position;
         playerCollider = transform.GetComponent<Collider>();
@@ -63,9 +58,10 @@ public class Player : Tile
         rigid = GetComponent<Rigidbody>();
         velocity = rigid.velocity;
 
+        anim.applyRootMotion = false;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         StartCoroutine(DeadState());
@@ -74,8 +70,13 @@ public class Player : Tile
         posZ = Mathf.RoundToInt(transform.position.z);
 
         if ( dead )
+        {
+            executeCount = 0;
+            execute = false;
+            answerA = "STILL";
+            answerB = "STILL";
             return;
-
+        }
         if ( lives == 0 )
         {
             gameOver = true;
@@ -91,7 +92,6 @@ public class Player : Tile
 
         UpdatePosition();
         CheckStates();
-
     }
 
     private void CheckStates()
@@ -102,9 +102,7 @@ public class Player : Tile
             transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
         }
 
-        //isGrounded();
-
-        Debug.Log("OnPlatform:" + onPlatform);
+       // Debug.Log("OnPlatform:" + onPlatform);
         RaycastCheck();
     }
 
@@ -116,9 +114,9 @@ public class Player : Tile
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.blue);
 
-            if ( (hit.transform.GetComponent<Turtle>() || hit.transform.GetComponent<Trunk>()) && !onPlatform && !inAction)
+            if ( (hit.transform.GetComponent<Turtle>() || hit.transform.GetComponent<Trunk>()) && !onPlatform ) //&& !inAction
             {
-                if ( !onPlatform )
+                if ( !onPlatform && !inAction ) //Modifica da controllare
                 {
                     Debug.Log("Entro sulla tartaruga/tronco " + hit.transform);
                     transform.localPosition = Vector3.zero;
@@ -126,7 +124,6 @@ public class Player : Tile
                     transform.parent = hit.transform;
                     onPlatform = true;
                 }
-
             }
 
 
@@ -157,18 +154,16 @@ public class Player : Tile
                     Debug.Log("La tana è già occupata");
                 }
             }
-            Debug.Log("Did Hit" + hit.transform);
+            //Debug.Log("Did Hit" + hit.transform);
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.red);
-            Debug.Log("Did not Hit");
         }
     }
 
     private IEnumerator DeadState()
-    {
-        
+    {    
         if ( dead )
         {
             if ( lives > 0 )
@@ -184,15 +179,12 @@ public class Player : Tile
                 Debug.Log("GAMEOVER");
                 yield return new WaitForSeconds(3);
         }
-
-        Debug.Log("NON è morto");
     }
 
     private void UpdatePosition()
     {
         switch ( move )
         {
-
             case Movement.UP:
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.back);
                 if ( onPlatform )
@@ -203,14 +195,16 @@ public class Player : Tile
                     onPlatform = false;
                     transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
                     anim.SetTrigger("Jump");
-                    //Vector3 start = transform.position;
-                    //Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-                    //transform.position = Vector3.Lerp(start, end, 0.5f);
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
                 else
                 {
-
                     anim.SetTrigger("Jump");
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
 
                 inAction = true;
@@ -275,18 +269,14 @@ public class Player : Tile
                 break;
 
             case Movement.IDLE:
-                anim.applyRootMotion = true;
+                //anim.applyRootMotion = true;
                 break;
         }
-
-
-
 
         if ( move != Movement.IDLE )
         {
             //normalized = true;
             move = Movement.IDLE;
-            
         }
 
 
@@ -300,7 +290,7 @@ public class Player : Tile
 
     private void InputHandleAI()
     {
-        if ( !execute )
+        if ( !execute&&executeCount==2 )
             executeCount = 0;
 
         if ( inAction )
@@ -308,36 +298,82 @@ public class Player : Tile
             _actionDelay += Time.deltaTime;
         }
 
-        if ( _actionDelay > .5f )
+        if ( _actionDelay > .6f )
         {
             inAction = false;
             _actionDelay = 0;
-
         }
         else if ( _actionDelay != 0 )
         {
-            Debug.Log("NOPE");
+           // Debug.Log("NOPE");
         }
 
-        if ( _actionDelay == 0 && execute)
+        if ( _actionDelay == 0)
         {
-            if(executeCount==0)
+            execute = true;
+            if(executeCount==0 )
             {
-                Enum.TryParse(answerA, out Movement move);
-                executeCount++;
+                parseAiMovement(answerA);
+                answerA = "STILL";
+                executeCount++; //MODIFICATO MOSSA SINGOLA
+                execute = false; //HA ESEGUITO LA MOSSA
             }
-            if ( executeCount == 1 )
+            if ( executeCount == 1&&execute)
             {
-                Enum.TryParse(answerB, out Movement move);
-                executeCount++;
-            }
-            if ( executeCount == 2 )
-            {
-                Enum.TryParse(answerC, out Movement move);
+                parseAiMovement(answerB);
+                answerB = "STILL";
                 execute = false;
+                executeCount++;
             }
-
+            normalizePosition();
         }
+    }
+
+    public bool validateAiMovement(string s)
+    {
+        Vector3 nativePos = transform.position;
+
+        switch ( s )
+        {
+            case "up":
+                break;
+            case "down":
+                break;
+            case "left":
+                break;
+            case "right":
+                break;
+            case "still":
+                break;
+        }
+        return true;
+    }
+
+    public void parseAiMovement(string s)
+    {
+        switch ( s )
+        { 
+            case "up":
+                move = Movement.UP;
+                break;
+            case "down":
+                move = Movement.DOWN;
+                break;
+            case "left":
+                move = Movement.LEFT;
+                break;
+            case "right":
+                move = Movement.RIGHT;
+                break;
+            case "still":
+                move = Movement.IDLE;
+                break;
+        }
+        //Debug.Log("Cerco di trasformare " + s + " IN  " + move);
+    }
+    public void addcount()
+    {
+        executeCount++;
     }
 
     private void InputHandler()
@@ -388,7 +424,7 @@ public class Player : Tile
             execute = true;
             answerA = X;
             answerB= Y;
-            answerC = Z;
+            //answerC = Z;
         }
    }
 
@@ -421,14 +457,14 @@ public class Player : Tile
         if ( other.transform.GetComponent<Car>() )
         {
             dead = true;
-            Debug.Log("Mi ha investito una macchina " + other.transform);
+            //Debug.Log("Mi ha investito una macchina " + other.transform);
         }
 
 
         if ( other.GetComponent<DeadLine>() )
         {
             dead = true;
-            Debug.Log("Sono uscito fuori bordo " + other.transform);
+            //Debug.Log("Sono uscito fuori bordo " + other.transform);
             transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
         }
 
