@@ -5,6 +5,6 @@ using UnityEngine;
 public enum TileType { Safe,Danger}
 public abstract class Tile: MonoBehaviour
 {
-    protected int posX, posZ,dim;
+    public int posX, posZ;
  
 }

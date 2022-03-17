@@ -2,9 +2,9 @@
  %Sensors.
 %playerSensor(player,objectIndex(Index),player(posX(Value))).
 %playerSensor(player,objectIndex(Index),player(posZ(Value))).
-%trunkLine1(trunkSpawnerLine1,objectIndex(Index),trunkSpawner(spawnedComponents(Index1,trunk(posX(Value)))).
-%trunkLine1(trunkSpawnerLine1,objectIndex(Index),trunkSpawner(spawnedComponents(Index1,trunk(posZ(Value)))).
-%trunkLine1(trunkSpawnerLine1,objectIndex(Index),trunkSpawner(spawnedComponents(Index1,trunk(dim(Value)))).
+%trunkLine1(trunkSpawnerLine1,objectIndex(Index),trunkSpawner(spawnComponent(posX(Value)))).
+%trunkLine1(trunkSpawnerLine1,objectIndex(Index),trunkSpawner(spawnComponent(posZ(Value)))).
+%trunkLine1(trunkSpawnerLine1,objectIndex(Index),trunkSpawner(spawnComponent(dim(Value)))).
 %trunkLine2(trunkSpawnerLine2,objectIndex(Index),trunkSpawner(spawnedComponents(Index1,trunk(posX(Value))))).
 %trunkLine2(trunkSpawnerLine2,objectIndex(Index),trunkSpawner(spawnedComponents(Index1,trunk(posZ(Value))))).
 %trunkLine2(trunkSpawnerLine2,objectIndex(Index),trunkSpawner(spawnedComponents(Index1,trunk(dim(Value))))).

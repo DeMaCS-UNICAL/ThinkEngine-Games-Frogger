@@ -13,7 +13,7 @@ public enum Movement { UP, DOWN, RIGHT, LEFT, IDLE, STILL }
 public class Player : Tile
 {
     public string answerA = "STILL";
-    public string answerB = "STILL";
+    //public string answerB = "STILL";
 
 
     public bool execute = false;
@@ -48,7 +48,7 @@ public class Player : Tile
     void Start()
     {
         answerA = "STILL";
-        answerB = "STILL";
+        //answerB = "STILL";
 
       
 
@@ -74,7 +74,7 @@ public class Player : Tile
             executeCount = 0;
             execute = false;
             answerA = "STILL";
-            answerB = "STILL";
+            //answerB = "STILL";
             return;
         }
         if ( lives == 0 )
@@ -324,16 +324,16 @@ public class Player : Tile
             {
                 parseAiMovement(answerA);
                 answerA = "STILL";
-                executeCount++; //MODIFICATO MOSSA SINGOLA
+                //executeCount++; //MODIFICATO MOSSA SINGOLA
                 execute = false; //HA ESEGUITO LA MOSSA
             }
-            if ( executeCount == 1&&execute)
-            {
-                parseAiMovement(answerB);
-                answerB = "STILL";
-                execute = false;
-                executeCount++;
-            }
+            //if ( executeCount == 1&&execute)
+            //{
+            //    parseAiMovement(answerB);
+            //    answerB = "STILL";
+            //    execute = false;
+            //    executeCount++;
+            //}
             normalizePosition();
         }
     }
@@ -378,11 +378,6 @@ public class Player : Tile
                 move = Movement.IDLE;
                 break;
         }
-        //Debug.Log("Cerco di trasformare " + s + " IN  " + move);
-    }
-    public void addcount()
-    {
-        executeCount++;
     }
 
     private void InputHandler()
@@ -432,7 +427,7 @@ public class Player : Tile
         {
             execute = true;
             answerA = X;
-            answerB= Y;
+            //answerB= Y;
             //answerC = Z;
         }
    }
