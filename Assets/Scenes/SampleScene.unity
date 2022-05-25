@@ -331,10 +331,13 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    Count: 2
+  - myStrings:
+    - ScrollLine
+    - dir
+    - value__
+    Count: 3
   _toMapProperties:
   - myStrings:
     - ScrollLine
@@ -350,15 +353,15 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    - value__
+    Count: 3
   _configurationName: lineSuperCar
-  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
+  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
+  operationPerPropertyOperations: 000000000000000000000000000000000000000000000000
+  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
   specificValuePerPropertyValues:
+  - 
   - 
   - 
   - 
@@ -2301,14 +2304,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   trunkSpeed: 1
-  toSpawn: {fileID: 3347842086754221880, guid: a34e260111c1e7742a039f59e1dfdb6c, type: 3}
-  spawnNumber: 5
+  toSpawn: {fileID: 4240344497563206492, guid: f04fb35a67eb9254784ea6a49db6de04, type: 3}
+  spawnNumber: 7
   _counter: 3
   _spawned: []
   _spawnedComponents: []
   dir: 1
   parentTag: TrunkLine1
-  timer: 3
+  timer: 4
 --- !u!114 &126670664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,49 +2342,50 @@ MonoBehaviour:
     Count: 1
   - myStrings:
     - TrunkSpawner
-    - _spawned
+    - _spawnedComponents
     Count: 2
   - myStrings:
     - TrunkSpawner
-    - _spawnComponent
-    Count: 2
-  - myStrings:
-    - TrunkSpawner
-    - _spawnComponent
+    - _spawnedComponents
+    - Trunk
     - posX
-    Count: 3
+    Count: 4
   - myStrings:
     - TrunkSpawner
-    - _spawnComponent
+    - _spawnedComponents
+    - Trunk
     - posZ
-    Count: 3
+    Count: 4
   - myStrings:
     - TrunkSpawner
-    - _spawnComponent
+    - _spawnedComponents
+    - Trunk
     - dim
-    Count: 3
+    Count: 4
   _toMapProperties:
   - myStrings:
     - TrunkSpawner
-    - _spawnComponent
+    - _spawnedComponents
+    - Trunk
     - posX
-    Count: 3
+    Count: 4
   - myStrings:
     - TrunkSpawner
-    - _spawnComponent
+    - _spawnedComponents
+    - Trunk
     - posZ
-    Count: 3
+    Count: 4
   - myStrings:
     - TrunkSpawner
-    - _spawnComponent
+    - _spawnedComponents
+    - Trunk
     - dim
-    Count: 3
+    Count: 4
   _configurationName: trunkLine1
-  operationPerPropertyIndexes: 5f70a3d40a62694e2c21d69ab4e53181eace80c65cef2ed4
-  operationPerPropertyOperations: 000000000000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: 5f70a3d40a62694e2c21d69ab4e53181eace80c65cef2ed4
+  operationPerPropertyIndexes: 5f70a3d4fe7f9dd53226bd1c680f0c62da2fba6f
+  operationPerPropertyOperations: 0000000000000000000000000000000000000000
+  specificValuePerPropertyIndexes: 5f70a3d4fe7f9dd53226bd1c680f0c62da2fba6f
   specificValuePerPropertyValues:
-  - 
   - 
   - 
   - 
@@ -3808,10 +3812,13 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    Count: 2
+  - myStrings:
+    - ScrollLine
+    - dir
+    - value__
+    Count: 3
   _toMapProperties:
   - myStrings:
     - ScrollLine
@@ -3827,15 +3834,15 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    - value__
+    Count: 3
   _configurationName: lineCars2
-  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
+  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
+  operationPerPropertyOperations: 000000000000000000000000000000000000000000000000
+  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
   specificValuePerPropertyValues:
+  - 
   - 
   - 
   - 
@@ -4998,14 +5005,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   trunkSpeed: 1
-  toSpawn: {fileID: 6780321993354789901, guid: cdd41c4e977bd024192e8cb235ff349a, type: 3}
+  toSpawn: {fileID: 5539760586909632440, guid: 92ea75d74e2b37448be55a4123b02e5a, type: 3}
   spawnNumber: 5
   _counter: 3
   _spawned: []
   _spawnedComponents: []
   dir: 1
   parentTag: TrunkLine2
-  timer: 3
+  timer: 7
 --- !u!114 &378532983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6560,12 +6567,6 @@ MonoBehaviour:
     - Turtle
     - posZ
     Count: 4
-  - myStrings:
-    - TurtleSpawner
-    - _spawnedComponents
-    - Turtle
-    - dim
-    Count: 4
   _toMapProperties:
   - myStrings:
     - TurtleSpawner
@@ -6579,18 +6580,11 @@ MonoBehaviour:
     - Turtle
     - posZ
     Count: 4
-  - myStrings:
-    - TurtleSpawner
-    - _spawnedComponents
-    - Turtle
-    - dim
-    Count: 4
   _configurationName: turtleLine1
-  operationPerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456820bb363
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456820bb363
+  operationPerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456
+  operationPerPropertyOperations: 00000000000000000000000000000000
+  specificValuePerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456
   specificValuePerPropertyValues:
-  - 
   - 
   - 
   - 
@@ -10220,10 +10214,13 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    Count: 2
+  - myStrings:
+    - ScrollLine
+    - dir
+    - value__
+    Count: 3
   _toMapProperties:
   - myStrings:
     - ScrollLine
@@ -10239,15 +10236,15 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    - value__
+    Count: 3
   _configurationName: lineCars4
-  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
+  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
+  operationPerPropertyOperations: 000000000000000000000000000000000000000000000000
+  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
   specificValuePerPropertyValues:
+  - 
   - 
   - 
   - 
@@ -10634,10 +10631,6 @@ MonoBehaviour:
   - myStrings:
     - ScrollLine
     - carComponents
-    Count: 2
-  - myStrings:
-    - ScrollLine
-    - carComponents
     - Car
     - posX
     Count: 4
@@ -10649,10 +10642,17 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
+    - dir
+    Count: 2
+  - myStrings:
+    - ScrollLine
+    - dir
+    - value__
+    Count: 3
+  - myStrings:
+    - ScrollLine
     - carComponents
-    - Car
-    - dim
-    Count: 4
+    Count: 2
   _toMapProperties:
   - myStrings:
     - ScrollLine
@@ -10668,15 +10668,15 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    - value__
+    Count: 3
   _configurationName: lineCars1
-  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
+  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1152027b0619acfc25
+  operationPerPropertyOperations: 000000000000000000000000000000000000000000000000
+  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1152027b0619acfc25
   specificValuePerPropertyValues:
+  - 
   - 
   - 
   - 
@@ -11475,8 +11475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24657d7f667206f4dbff3285bf86e522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posX: 0
+  posZ: 0
   answerA: STILL
-  answerB: STILL
   execute: 0
   executeCount: 0
   enableAi: 1
@@ -11519,12 +11520,6 @@ MonoBehaviour:
   _savedProperties:
   - myStrings:
     - Player
-    Count: 1
-  - myStrings:
-    - transform
-    Count: 1
-  - myStrings:
-    - Player
     - posX
     Count: 2
   - myStrings:
@@ -11541,12 +11536,10 @@ MonoBehaviour:
     - posZ
     Count: 2
   _configurationName: playerSensor
-  operationPerPropertyIndexes: 5a62cf6f0113983e46ca604b7cb3af90
-  operationPerPropertyOperations: 00000000000000000000000000000000
-  specificValuePerPropertyIndexes: 5a62cf6f0113983e46ca604b7cb3af90
+  operationPerPropertyIndexes: 46ca604b7cb3af90
+  operationPerPropertyOperations: 0000000000000000
+  specificValuePerPropertyIndexes: 46ca604b7cb3af90
   specificValuePerPropertyValues:
-  - 
-  - 
   - 
   - 
 --- !u!114 &1059394116
@@ -11561,7 +11554,7 @@ MonoBehaviour:
   m_Script: {fileID: 417179157, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1059394119
+--- !u!114 &1059394124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11570,34 +11563,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1059394107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -189814521, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Script: {fileID: 895733800, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enableBrain: 1
   debug: 1
   maintainInputFile: 1
   _chosenSensorConfigurations:
-  - playerSensor
-  - trunkLine1
-  - trunkLine2
-  - trunkLine3
-  - turtleLine1
-  - turtleLine2
-  - lineCars1
-  - lineCars2
-  - lineCars3
-  - lineCars4
   - lineSuperCar
+  - trunkLine1
+  - lineCars2
+  - trunkLine2
+  - turtleLine1
+  - lineCars1
+  - lineCars4
+  - playerSensor
+  - trunkLine3
+  - lineCars3
+  - turtleLine2
+  - goal1
+  - goal2
+  - goal4
+  - goal5
+  - goal3
   AIFilesPath: .\Assets\StreamingAssets\
   AIFilesPrefix: Player
-  _AIFileTemplatePath: .\Assets\Resources\ActuatorBrainTemplatePlayer.asp
+  _AIFileTemplatePath: .\Assets\Resources\ReactiveBrainTemplatePlayer.asp
   prefabBrain: 0
   _executeReasonerOn: runTheReasoner
   specificAIFile: 0
   globalAIFile: 0
   _chosenActuatorConfigurations:
   - playerAct
---- !u!114 &1059394120
+--- !u!114 &1059394127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11612,27 +11610,16 @@ MonoBehaviour:
   _savedProperties:
   - myStrings:
     - Player
-    Count: 1
-  - myStrings:
-    - Player
     - answerA
-    Count: 2
-  - myStrings:
-    - Player
-    - answerB
     Count: 2
   _toMapProperties:
   - myStrings:
     - Player
     - answerA
     Count: 2
-  - myStrings:
-    - Player
-    - answerB
-    Count: 2
   _configurationName: playerAct
-  _methodToApply: applyActuators
---- !u!114 &1059394121
+  _methodToApply: Always
+--- !u!114 &1059394128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18644,14 +18631,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   trunkSpeed: 1
-  toSpawn: {fileID: 8031139484354259356, guid: 6d6a4ecb18d30d841a5d2950f1712dd6, type: 3}
+  toSpawn: {fileID: 1305339633213931043, guid: 46e09bd1e2507c14fb00c1603d081a20, type: 3}
   spawnNumber: 5
   _counter: 3
   _spawned: []
   _spawnedComponents: []
   dir: 1
   parentTag: TrunkLine3
-  timer: 3
+  timer: 10
 --- !u!114 &1896666109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20337,10 +20324,13 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    Count: 2
+  - myStrings:
+    - ScrollLine
+    - dir
+    - value__
+    Count: 3
   _toMapProperties:
   - myStrings:
     - ScrollLine
@@ -20356,15 +20346,15 @@ MonoBehaviour:
     Count: 4
   - myStrings:
     - ScrollLine
-    - carComponents
-    - Car
-    - dim
-    Count: 4
+    - dir
+    - value__
+    Count: 3
   _configurationName: lineCars3
-  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d11e6d2bb1e
+  operationPerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
+  operationPerPropertyOperations: 000000000000000000000000000000000000000000000000
+  specificValuePerPropertyIndexes: b6f5a2428621a7d13ec9becb74b20d1119acfc2552027b06
   specificValuePerPropertyValues:
+  - 
   - 
   - 
   - 
@@ -20617,12 +20607,6 @@ MonoBehaviour:
     - Turtle
     - posZ
     Count: 4
-  - myStrings:
-    - TurtleSpawner
-    - _spawnedComponents
-    - Turtle
-    - dim
-    Count: 4
   _toMapProperties:
   - myStrings:
     - TurtleSpawner
@@ -20636,18 +20620,11 @@ MonoBehaviour:
     - Turtle
     - posZ
     Count: 4
-  - myStrings:
-    - TurtleSpawner
-    - _spawnedComponents
-    - Turtle
-    - dim
-    Count: 4
   _configurationName: turtleLine2
-  operationPerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456820bb363
-  operationPerPropertyOperations: 0000000000000000000000000000000000000000
-  specificValuePerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456820bb363
+  operationPerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456
+  operationPerPropertyOperations: 00000000000000000000000000000000
+  specificValuePerPropertyIndexes: 8f0b7c09ce4ad83bda01b61010eb0456
   specificValuePerPropertyValues:
-  - 
   - 
   - 
   - 

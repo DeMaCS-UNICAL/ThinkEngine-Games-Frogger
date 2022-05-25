@@ -8,6 +8,7 @@ public class Trunk : Tile
     private Collider trunkCollider;
     public TrunkSpawner _spawner = null;
     public float speed = 1;
+    public int dim;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,10 @@ public class Trunk : Tile
         position = transform.position;
         posX = Mathf.RoundToInt(transform.position.x);
         posZ = Mathf.RoundToInt(transform.position.z);
-        dim = Mathf.RoundToInt(this.transform.localScale.x);
     }
+
     private void OnTriggerExit(Collider other)
     {
-
         if ( other.TryGetComponent<DeadLine>(out DeadLine component) )
         {
             if ( _spawner.dir == TrunkSpawner.Direction.Left && component.type == Cord.W )

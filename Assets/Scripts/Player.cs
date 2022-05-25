@@ -13,9 +13,8 @@ public enum Movement { UP, DOWN, RIGHT, LEFT, IDLE, STILL }
 public class Player : Tile
 {
     public string answerA = "STILL";
-    public string answerB = "STILL";
 
-
+    public float deltaTime;
     public bool execute = false;
     public int executeCount = 0;
     public bool enableAi = false;
@@ -25,7 +24,7 @@ public class Player : Tile
 
     public bool onPlatform = false;
 
-    public int lives = 5;
+    public int lives = 10;
     private Vector3 originalPos;
     public float gameTime = 30;
     public float warningTime = 5;
@@ -48,7 +47,6 @@ public class Player : Tile
     void Start()
     {
         answerA = "STILL";
-        answerB = "STILL";
 
       
 
@@ -64,6 +62,8 @@ public class Player : Tile
 
     void Update()
     {
+        deltaTime += Time.deltaTime;
+
         StartCoroutine(DeadState());
 
         posX = Mathf.RoundToInt(transform.position.x);
@@ -74,7 +74,6 @@ public class Player : Tile
             executeCount = 0;
             execute = false;
             answerA = "STILL";
-            answerB = "STILL";
             return;
         }
         if ( lives == 0 )
@@ -170,7 +169,7 @@ public class Player : Tile
             {
                 onPlatform = false;
                 transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
-                lives = lives - 1;
+                //lives = lives - 1;
                 transform.position = originalPos;
                 dead = false;
 
@@ -217,13 +216,16 @@ public class Player : Tile
                     onPlatform = false;
                     transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
                     anim.SetTrigger("Jump");
-                    //Vector3 start = transform.position;
-                    //Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z + -1);
-                    //transform.position = Vector3.Lerp(start, end, 0.5f);
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
                 else
                 {
                     anim.SetTrigger("Jump");
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
                 inAction = true;
 
@@ -237,13 +239,16 @@ public class Player : Tile
                     transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
 
                     anim.SetTrigger("Jump");
-                    //Vector3 start = transform.position;
-                    //Vector3 end = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
-                    //transform.position = Vector3.Lerp(start, end, 0.5f);
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Lerp(start, end, 0.7f);
                 }
                 else
                 {
                     anim.SetTrigger("Jump");
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
                 inAction = true;
 
@@ -256,13 +261,16 @@ public class Player : Tile
                     onPlatform = false;
                     transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
                     anim.SetTrigger("Jump");
-                    //Vector3 start = transform.position;
-                    //Vector3 end = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-                    //transform.position = Vector3.Lerp(start, end, 0.5f);
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
                 else
                 {
                     anim.SetTrigger("Jump");
+                    Vector3 start = transform.position;
+                    Vector3 end = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Lerp(start, end, 0.5f);
                 }
                 inAction = true;
 
@@ -298,7 +306,7 @@ public class Player : Tile
             _actionDelay += Time.deltaTime;
         }
 
-        if ( _actionDelay > .6f )
+        if ( _actionDelay > .7f )
         {
             inAction = false;
             _actionDelay = 0;
@@ -315,17 +323,17 @@ public class Player : Tile
             {
                 parseAiMovement(answerA);
                 answerA = "STILL";
-                executeCount++; //MODIFICATO MOSSA SINGOLA
+                //executeCount++; //MODIFICATO MOSSA SINGOLA
                 execute = false; //HA ESEGUITO LA MOSSA
             }
-            if ( executeCount == 1&&execute)
-            {
-                parseAiMovement(answerB);
-                answerB = "STILL";
-                execute = false;
-                executeCount++;
-            }
-            normalizePosition();
+            //if ( executeCount == 1&&execute)
+            //{
+            //    parseAiMovement(answerB);
+            //    answerB = "STILL";
+            //    execute = false;
+            //    executeCount++;
+            //}
+            //normalizePosition();
         }
     }
 
@@ -369,11 +377,6 @@ public class Player : Tile
                 move = Movement.IDLE;
                 break;
         }
-        //Debug.Log("Cerco di trasformare " + s + " IN  " + move);
-    }
-    public void addcount()
-    {
-        executeCount++;
     }
 
     private void InputHandler()
@@ -423,7 +426,7 @@ public class Player : Tile
         {
             execute = true;
             answerA = X;
-            answerB= Y;
+            //answerB= Y;
             //answerC = Z;
         }
    }
@@ -457,6 +460,7 @@ public class Player : Tile
         if ( other.transform.GetComponent<Car>() )
         {
             dead = true;
+            transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
             //Debug.Log("Mi ha investito una macchina " + other.transform);
         }
 

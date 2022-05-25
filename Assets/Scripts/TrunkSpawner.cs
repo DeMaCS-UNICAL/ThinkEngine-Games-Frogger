@@ -28,10 +28,8 @@ public class TrunkSpawner : MonoBehaviour
     private void Start()
     {
         timer *= toSpawn.transform.localScale.x;
-        //subMergeIndex = Random.Range(1, 10);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -58,25 +56,6 @@ public class TrunkSpawner : MonoBehaviour
     {
         _spawnCounter += 1;
         _spawn = Instantiate(toSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag(parentTag).transform) as GameObject;
-
-        //switch ( dir )
-        //{
-        //    case Direction.Left:
-        //       // if ( _spawnCounter % subMergeIndex != 0 )
-        //            _spawn.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        //      //  else
-        //           // _spawn.transform.position = new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z);
-        //        break;
-        //    case Direction.Right:
-        //       // if ( _spawnCounter % subMergeIndex != 0 )
-        //            _spawn.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        //      //  else
-        //         //   _spawn.transform.position = new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z);
-
-        //        break;
-        //    case Direction.Stop:
-        //        break;
-        //}
 
         foreach ( Trunk t in _spawn.GetComponentsInChildren<Trunk>() )
         {
