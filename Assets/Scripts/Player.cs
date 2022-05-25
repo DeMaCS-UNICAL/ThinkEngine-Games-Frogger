@@ -13,9 +13,8 @@ public enum Movement { UP, DOWN, RIGHT, LEFT, IDLE, STILL }
 public class Player : Tile
 {
     public string answerA = "STILL";
-    //public string answerB = "STILL";
 
-
+    public float deltaTime;
     public bool execute = false;
     public int executeCount = 0;
     public bool enableAi = false;
@@ -48,7 +47,6 @@ public class Player : Tile
     void Start()
     {
         answerA = "STILL";
-        //answerB = "STILL";
 
       
 
@@ -64,6 +62,8 @@ public class Player : Tile
 
     void Update()
     {
+        deltaTime += Time.deltaTime;
+
         StartCoroutine(DeadState());
 
         posX = Mathf.RoundToInt(transform.position.x);
@@ -74,7 +74,6 @@ public class Player : Tile
             executeCount = 0;
             execute = false;
             answerA = "STILL";
-            //answerB = "STILL";
             return;
         }
         if ( lives == 0 )
@@ -170,7 +169,7 @@ public class Player : Tile
             {
                 onPlatform = false;
                 transform.parent = GameObject.FindGameObjectWithTag("Operators").transform;
-                lives = lives - 1;
+                //lives = lives - 1;
                 transform.position = originalPos;
                 dead = false;
 
@@ -223,10 +222,10 @@ public class Player : Tile
                 }
                 else
                 {
+                    anim.SetTrigger("Jump");
                     Vector3 start = transform.position;
                     Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
                     transform.position = Vector3.Lerp(start, end, 0.5f);
-                    anim.SetTrigger("Jump");
                 }
                 inAction = true;
 
@@ -307,7 +306,7 @@ public class Player : Tile
             _actionDelay += Time.deltaTime;
         }
 
-        if ( _actionDelay > .6f )
+        if ( _actionDelay > .7f )
         {
             inAction = false;
             _actionDelay = 0;
@@ -334,7 +333,7 @@ public class Player : Tile
             //    execute = false;
             //    executeCount++;
             //}
-            normalizePosition();
+            //normalizePosition();
         }
     }
 

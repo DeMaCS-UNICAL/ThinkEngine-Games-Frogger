@@ -51,8 +51,8 @@ goal(X,Z,Avaible):- goalRaw(X1,Z,Avaible),X=X1+1.
 playerPos(X,Z):- playerSensor(player,_,player(posX(X))),playerSensor(player,_,player(posZ(Z))).
 
 %Generazione posizioni safe
-safe(X,Z):- xCoord(X), Z=0.
-safe(X,Z):- xCoord(X), Z=6.
+safe(X,Z):- xCoord(X), Z=0. %RIGA SAFE
+safe(X,Z):- xCoord(X), Z=6. %RIGA SAFE
 safe(X,Z):- trunk(X,Z),xCoord(X).
 safe(X,Z):- turtle(X,Z),xCoord(X).
 safe(X,Z):- goal(X,Z,true),xCoord(X),Z=12.
@@ -65,26 +65,38 @@ nextPlayerPos(X,Z1,down):-playerPos(X,Z),Z1=Z-1.
 nextPlayerPos(X1,Z,left):-playerPos(X,Z), X1=X-1.
 nextPlayerPos(X1,Z,right):-playerPos(X,Z), X1=X+1.
 
-%StrongConstraight
-:-Answer(M),nextPlayerPos(X,Z,M),not safe(X,Z). %Non esiste risposta che porti ad una posizione non safe
-:-Answer(left), playerPos(X,Z), car(X1,Z,1), X1<X. %Non esiste mossa LEFT se mi trovo sulla stella riga della macchina e questa si sta muovendo a destra
-:-Answer(right), playerPos(X,Z), car(X1,Z,-1), X1>X. %Non esiste mossa RIGHT se mi trovo sulla stella riga della macchina e questa si sta muovendo a destra
+%StrongConstraints
+:-Answer(M),nextPlayerPos(X,Z,M),not safe(X,Z).            %Non esiste risposta che porti ad una posizione non safe
+:-Answer(left), playerPos(X,Z), car(X1,Z,1), X1<X.        %Non esiste mossa LEFT se mi trovo sulla stessa riga della macchina e questa si sta muovendo a destra
+:-Answer(right), playerPos(X,Z), car(X1,Z,-1), X1>X.         %Non esiste mossa RIGHT se mi trovo sulla stessa riga della macchina e questa si sta muovendo a destra
 
-%WeakConstraight
+:-Answer(M),nextPlayerPos(X,Z,M),maxXCoord(X).
+:-Answer(M),nextPlayerPos(X,Z,M),X<1.
+
+
+%WeakConstraints
 %PRIORITA MASSIMA [N@4]
-:~ Answer(M), nextPlayerPos(X,Z,M), playerPos(X1,Z1), Z=Z1, X=X1. [1@4] % Non preferire mosse che non cambino la posizione del Player (stillAvoid)
-%VERSIONE COMPATTA DA CHIEDERE :~ Answer(still). [1@4]
+:~ Answer(M), nextPlayerPos(X,Z,M), playerPos(_,Z1), Z<Z1. [1@4] %Non preferire mosse che fanno retrocedere il player di posizione (downAvoid)
+
 
 %PRIORITA ALTA [N@3]
-:~ Answer(M), nextPlayerPos(X,Z,M), playerPos(_,Z1), Z<Z1. [1@3] %Non preferire mosse che fanno retrocedere il player di posizione (downAvoid)
-%VERSIONE COMPATTA DA CHIEDERE :~ Answer(down). [1@3]
+:~ Answer(M), nextPlayerPos(X,Z,M), playerPos(X1,Z1), Z=Z1, X=X1. [1@3] % Non preferire mosse che non cambino la posizione del Player (stillAvoid)
+
+%Regole che ho dovuto aggiungere per specificare che preferisco che la rana non usi la mossa left o right sui tronchi/tartarughe se non necessario.
+:~ Answer(right),playerPos(X,Z),trunk(X,Z). [2@3]
+:~ Answer(left),playerPos(X,Z),trunk(X,Z). [2@3]
+:~ Answer(right),playerPos(X,Z),turtle(X,Z).[2@3]
+:~ Answer(left),playerPos(X,Z),turtle(X,Z).[2@3]
 
 %PRIORITA MEDIA [N@2]
 :~ Answer(right),nextPlayerPos(X,Z,right),car(X1,Z1,1),Z1=Z+1. [1@2] %Non preferire la mossa destra se ti trovi sulla riga prima di quella delle macchine che si muovono da sinistra verso destra
 :~ Answer(left),nextPlayerPos(X,Z,left),car(X1,Z1,-1),Z1=Z+1. [1@2]  %Non preferire la mossa sinistra se ti trovi sulla riga prima di quella delle macchine che si muovono da destra verso sinistra
+:~ Answer(left). [1@2] %Dubbio destra o sinistra
 
-%PRIORITA BASSA [N@1] - Dubbio destra o sinistra
+%PRIORITA BASSA [N@1] - 
+:~ Answer(down). [1@1] %Regole che ho dovuto aggiungere per specificare che preferisco che la rana prosegua.
 :~ Answer(right). [1@1]
+
 
 %GUESS
 {Answer(M):nextPlayerPos(X,Z,M)}=1.
